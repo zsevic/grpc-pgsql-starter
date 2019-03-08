@@ -12,3 +12,5 @@ app.use('/api', productRoutes)
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
 })
+
+export default app

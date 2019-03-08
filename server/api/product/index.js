@@ -1,6 +1,9 @@
+import Knex from 'knex'
+import knexfile from '../../../knexfile'
+
 const environment = process.env.NODE_ENV || 'development'
-const config = require('../../../knexfile')[environment]
-const knex = require('knex')(config)
+const config = knexfile[environment]
+const knex = Knex(config)
 
 export const listProducts = (call, callback) => {
   knex('products').then(data => {

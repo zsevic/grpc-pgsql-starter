@@ -17,7 +17,11 @@ const client = new productPackageDefinition.ProductService(
 
 export const listProducts = (req, res) => {
   client.listProducts({}, (err, result) => {
-    res.json(result)
+    if (err) {
+      res.send('There are no products')
+    } else {
+      res.json(result)
+    }
   })
 }
 
@@ -26,7 +30,7 @@ export const readProduct = (req, res) => {
 
   client.readProduct(payload, (err, result) => {
     if (err) {
-      res.json('That product does not exist')
+      res.status(404).send('That product does not exist')
     } else {
       res.json(result)
     }
@@ -40,7 +44,11 @@ export const createProduct = (req, res) => {
   }
 
   client.createProduct(payload, (err, result) => {
-    res.json(result)
+    if (err) {
+      res.send('Provide valid payload')
+    } else {
+      res.status(201).json(result)
+    }
   })
 }
 
@@ -53,7 +61,7 @@ export const updateProduct = (req, res) => {
 
   client.updateProduct(payload, (err, result) => {
     if (err) {
-      res.json('That product does not exist')
+      res.status(404).send('That product does not exist')
     } else {
       res.json(result)
     }
@@ -65,7 +73,7 @@ export const deleteProduct = (req, res) => {
 
   client.deleteProduct(payload, (err, result) => {
     if (err) {
-      res.json('That product does not exist')
+      res.status(404).send('That product does not exist')
     } else {
       res.json(result)
     }

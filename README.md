@@ -16,6 +16,13 @@ yarn server:dev
 ### :rotating_light: Testing
 
 ```bash
+yarn server:dev
+yarn test
+```
+
+### :arrow_right: Usage
+
+```bash
 # list products
 curl http://localhost:3000/api/products
 
