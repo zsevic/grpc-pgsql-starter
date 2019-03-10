@@ -1,24 +1,7 @@
 import request from 'supertest'
-import Knex from 'knex'
 import app from '../client/app'
-import knexfile from '../knexfile'
-
-const environment = process.env.NODE_ENV || 'development'
-const config = knexfile[environment]
-const knex = Knex(config)
 
 describe('Products', () => {
-  before(() => {
-    return knex('products')
-      .del()
-      .then(() => {
-        return knex('products').insert([
-          { id: 1, name: 'pencil', price: '1.99' },
-          { id: 2, name: 'pen', price: '2.99' },
-        ])
-      })
-  })
-
   it('should return list of products', done => {
     request(app)
       .get('/api/products')

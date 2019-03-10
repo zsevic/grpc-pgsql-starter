@@ -9,7 +9,7 @@
     "server:dev": "nodemon --exec babel-node server",
     "server:start": "node -r esm server",
     "pretest": "eslint --fix --ignore-path .eslintignore .",
-    "test": "mocha --require @babel/register --exit",
+    "test": "NODE_ENV=testing yarn knex seed:run && mocha --require @babel/register --exit",
     "migrate:make": "knex migrate:make products",
     "migrate:latest": "knex migrate:latest",
     "seed:make": "knex seed:make products",
